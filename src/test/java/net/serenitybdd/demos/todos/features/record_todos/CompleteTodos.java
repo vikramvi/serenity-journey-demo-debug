@@ -30,7 +30,7 @@ public class CompleteTodos {
 
     @Test
     public void shouldBeAbleToClearCompletedActionsFromTheTodoList() {
-
+        
         // GIVEN
         joe.has_added_actions_called("Walk the dog", "Put out the garbage");
 

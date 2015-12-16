@@ -6,9 +6,11 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.serenitybdd.demos.todos.model.TodoStatus;
 import net.serenitybdd.demos.todos.model.TodoStatusFilter;
 import net.thucydides.core.annotations.DefaultUrl;
+
 import org.openqa.selenium.Keys;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 @DefaultUrl("http://todomvc.com/examples/angularjs/#/")
@@ -19,8 +21,13 @@ public class TodoPage extends PageObject {
     public static final String COMPLETE_TICKBOX = ".//input[@ng-model='todo.completed']";
 
     public void addAnActionCalled(String actionName) {
+    	System.out.println("DEBUG BEFORE setImplicitTimeout >>> " + implicitTimoutMilliseconds());
+    	setImplicitTimeout(3, TimeUnit.SECONDS);
         $("#new-todo").type(actionName)
                       .then().sendKeys(Keys.ENTER);
+        System.out.println("DEBUG AFTER setImplicitTimeout >>> " + implicitTimoutMilliseconds());
+        resetImplicitTimeout();
+        System.out.println("DEBUG AFTER resetImplicitTimeout >>> " + implicitTimoutMilliseconds());
     }
 
     public List<String> getActions() {
