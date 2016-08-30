@@ -21,13 +21,21 @@ public class TodoPage extends PageObject {
     public static final String COMPLETE_TICKBOX = ".//input[@ng-model='todo.completed']";
 
     public void addAnActionCalled(String actionName) {
-    	System.out.println("DEBUG BEFORE setImplicitTimeout >>> " + implicitTimoutMilliseconds());
-    	setImplicitTimeout(3, TimeUnit.SECONDS);
+	if($("#new-todoINVALID").isCurrentlyEnabled()){
+	    System.out.println("test");
+	}
+	
+	if($("#new-todoINVALID").isCurrentlyVisible()){
+	    System.out.println("test");
+	}
+	
+    	//System.out.println("DEBUG BEFORE setImplicitTimeout >>> " + implicitTimoutMilliseconds());
+    	//setImplicitTimeout(3, TimeUnit.SECONDS);
         $("#new-todo").type(actionName)
                       .then().sendKeys(Keys.ENTER);
-        System.out.println("DEBUG AFTER setImplicitTimeout >>> " + implicitTimoutMilliseconds());
-        resetImplicitTimeout();
-        System.out.println("DEBUG AFTER resetImplicitTimeout >>> " + implicitTimoutMilliseconds());
+        //System.out.println("DEBUG AFTER setImplicitTimeout >>> " + implicitTimoutMilliseconds());
+        //resetImplicitTimeout();
+        //System.out.println("DEBUG AFTER resetImplicitTimeout >>> " + implicitTimoutMilliseconds());
     }
 
     public List<String> getActions() {
